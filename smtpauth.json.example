@@ -1,0 +1,14 @@
+{
+	"sender": "My Name <me@myemail.com>",
+	"transport": {
+		"service": "Gmail",
+		"auth": {
+			"XOAuth2": {
+				"user": "me@myemail.com",
+				"clientId": "myclientid",
+				"clientSecret": "myclientsecret",
+				"refreshToken": "myrefreshtoken"
+			}
+		}
+	}
+}

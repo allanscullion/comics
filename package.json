@@ -1,0 +1,15 @@
+{
+  "name": "getcomics",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node getcomics"
+  },
+  "dependencies": {
+    "cheerio": "0.17.0",
+    "request": "2.40.0",
+    "nodemailer": "0.6.3",
+    "randomstring": "1.0.3",
+    "moment": "2.8.1"
+  }
+}

@@ -1,0 +1,46 @@
+[
+	{
+		"comictype": "dilbert",
+		"divclass": ".STR_Image",
+		"isRelative": true,
+		"dtformat": "YYYY-MM-DD",
+		"subject": "Dilbert",
+		"bcc": "me@myemail.com",
+		"url": "http://www.dilbert.com",
+		"targetfile": "/home/myusername/Dropbox/Comics/dilbert/dilbert.",
+		"extension": ".gif"
+	},
+	{
+		"comictype": "gocomic",
+		"divclass": ".feature_item",
+		"isRelative": false,
+		"dtformat": "YYYY\/MM\/DD",
+		"subject": "Calvin and Hobbes",
+		"bcc": "me@myemail.com",
+		"url": "http://www.gocomics.com/calvinandhobbes",
+		"targetfile": "/home/myusername/Dropbox/Comics/calvinandhobbes/calvinandhobbes.",
+		"extension": ".gif"
+	},
+	{ 	
+		"comictype": "gocomic",
+		"divclass": ".feature_item",
+		"isRelative": false,
+		"dtformat": "YYYY\/MM\/DD",
+		"subject": "Peanuts",
+		"bcc": "me@myemail.com",
+		"url": "http://www.gocomics.com/peanuts",
+		"targetfile": "/home/myusername/Dropbox/Comics/peanuts/peanuts.",
+		"extension": ".gif"
+	},
+	{ 
+		"comictype": "gocomic",
+		"divclass": ".feature_item",
+		"isRelative": false,
+		"dtformat": "YYYY\/MM\/DD",
+		"subject": "Andy Capp",
+		"bcc": "me@myemail.com",
+		"url": "http://www.gocomics.com/andycapp",
+		"targetfile": "/home/myusername/Dropbox/Comics/andycapp/andycapp.",
+		"extension": ".gif"
+	}
+]
