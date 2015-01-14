@@ -1,8 +1,8 @@
 [
 	{
 		"comictype": "dilbert",
-		"divclass": ".STR_Image",
-		"isRelative": true,
+		"divclass": ".img-comic-container",
+		"isRelative": false,
 		"dtformat": "YYYY-MM-DD",
 		"subject": "Dilbert",
 		"bcc": "me@myemail.com",
