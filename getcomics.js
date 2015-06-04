@@ -57,6 +57,7 @@ function get_comic(comic, dt, filename, callback) {
 
         if (img_url.length > 0) {
             var full_url = comic.isRelative == true ? comic.url + img_url.attr('src') : img_url.attr('src');
+            comic.title = img_url.attr('title');
 
             //
             // Sometimes they leave off the http: part of the URL
@@ -104,12 +105,13 @@ function email_file(comic, dt, comicfile) {
         //
         // setup e-mail data with unicode symbols
         //
+        var title = comic.title == undefined ? "" : comic.title;
         var mailOptions = {
             from: smtpauth.sender, // sender address
             bcc: comic.bcc,
             subject: "[Daily Comic] - " + subjecttext, // Subject line
             text: subjecttext, // text body
-            html: "<h2>" + subjecttext + "</h2><img src='cid:" + rand_cid + "' />", // html body
+            html: "<h2>" + subjecttext + "</h2><img src='cid:" + rand_cid + "' title='" + title + "' /><p>" + title + "</p>", // html body
             attachments: [{
                 filename: comicfile.substr(comicfile.lastIndexOf("/") + 1),
                 filePath: comicfile,
