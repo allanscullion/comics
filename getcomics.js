@@ -139,45 +139,58 @@ function email_file(comic, dt, comicfile) {
 //
 var dt = new moment();
 var historic = false;
+var comics_file = "comics.json"
 
-//
-// Override the date if supplied on the command line
-//
 if (process.argv.length > 2) {
-    dt = moment(process.argv[2]);
-    historic = true;
-}
-
-load_json("./comics.json", function(err, comics) {
 
     //
-    // Loop over the GoComic targets, downloading and emailing each targetfile
+    // Override the date if supplied on the command line
     //
-    for (var i = 0, l = comics.length; i < l; i++) {
+    if (process.argv.length > 3) {
+        dt = moment(process.argv[3]);
+        historic = true;
+    }
 
-        if (historic) {
-            if (comics[i].historic == false) {
-                console.log('Error: Comic ' + comics[i].subject + ' does not support historic fetching');
-                continue;
+    comics_file = process.argv[2];
+
+    load_json(comics_file, function(err, comics) {
+
+        if (err) {
+            console.log(err);
+        } else {
+
+            //
+            // Loop over the Comic targets, downloading and emailing each targetfile
+            //
+            for (var i = 0, l = comics.length; i < l; i++) {
+
+                if (historic) {
+                    if (comics[i].historic == false) {
+                        console.log('Error: Comic ' + comics[i].subject + ' does not support historic fetching');
+                        continue;
+                    }
+                }
+
+                //
+                // Get the day of week
+                //
+                var dow = moment(dt).format('E');
+
+                // Assume the comic is published seven days a week
+                var dowmask = 127;
+
+                // Override the published days bitmask if defined
+                if (comics[i].published != null)
+                    dowmask = comics[i].published;
+
+                // Do we publish on this day?
+                if (dowmask & (1 << (dow - 1))) {
+                    var filename = comics[i].targetfile + moment(dt).format('YYYY-MM-DD') + comics[i].extension;
+                    get_comic(comics[i], dt, filename);
+                }
             }
         }
-
-        //
-        // Get the day of week
-        //
-        var dow = moment(dt).format('E');
-
-        // Assume the comic is published seven days a week
-        var dowmask = 127;
-
-        // Override the published days bitmask if defined
-        if (comics[i].published != null)
-            dowmask = comics[i].published;
-
-        // Do we publish on this day?
-        if (dowmask & (1 << (dow - 1))) {
-            var filename = comics[i].targetfile + moment(dt).format('YYYY-MM-DD') + comics[i].extension;
-            get_comic(comics[i], dt, filename);
-        }
-    }
-});
+    });
+} else {
+    console.log("usage: node getcomics.js <comics.json> <date>");
+}
