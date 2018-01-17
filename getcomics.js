@@ -4,6 +4,7 @@ var moment = require('moment');
 var nodemailer = require('nodemailer');
 var fs = require('fs');
 var randomstring = require('randomstring');
+var encoder = require('node-html-encoder').Encoder;
 
 function load_json(filename, callback) {
 
@@ -57,7 +58,8 @@ function get_comic(comic, dt, filename, callback) {
 
         if (img_url.length > 0) {
             var full_url = comic.isRelative == true ? comic.url + img_url.attr('src') : img_url.attr('src');
-            comic.title = img_url.attr('title');
+            var enc = new encoder('entity');
+            comic.title = enc.htmlEncode(img_url.attr('title'));
 
             //
             // Sometimes they leave off the http: part of the URL
@@ -66,6 +68,7 @@ function get_comic(comic, dt, filename, callback) {
                 full_url = 'http:' + full_url;
 
             console.log("Found image: " + full_url);
+            console.log("Title: " + comic.title);
 
             download(full_url, filename, function() {
                 console.log("Downloaded: " + filename);
