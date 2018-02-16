@@ -3,5 +3,5 @@ smtpauth.json
 node_modules
 daily.json
 test_comics.json
-xkcd.json
-xkcd_test.json
+xkcd*.json
+yeti*.json
